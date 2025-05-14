@@ -33,7 +33,7 @@ public class SecurityConfig {
 
             // URL별 접근 권한 설정
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/login", "/signup").permitAll() // 인증 없이 접근 허용
+                .requestMatchers("/member/signin", "/member/login").permitAll() // 인증 없이 접근 허용
                 .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 역할만 접근 가능
                 .requestMatchers("/user/**").hasRole("USER") // USER 역할만 접근 가능
                 .anyRequest().authenticated() // 그 외 모든 요청은 인증 필요

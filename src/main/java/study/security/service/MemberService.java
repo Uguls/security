@@ -3,6 +3,7 @@ package study.security.service;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * 사용자의 ID(PK)와 비밀번호로 JWT 토큰을 생성하는 메서드
@@ -51,17 +53,18 @@ public class MemberService {
         return tokenInfo;
     }
 
-	public String saveUser(MemberSignInRequestDto dto) {
+	public Member saveUser(MemberSignInRequestDto dto) {
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
 		Member member = Member.builder()
 			.email(dto.getEmail())
 			.name(dto.getName())
-			.password(dto.getPassword())
+			.password(encodedPassword)
 			.role(Role.ROLE_USER)
 			.build();
 
 		memberRepository.save(member);
 
-		return "성공";
+		return member;
 
 	}
 

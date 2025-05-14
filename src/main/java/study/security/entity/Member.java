@@ -6,10 +6,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import study.security.constant.Role;
 
 @Entity
@@ -17,6 +14,7 @@ import study.security.constant.Role;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@Data
 public class Member {
 	@Id
 	@GeneratedValue

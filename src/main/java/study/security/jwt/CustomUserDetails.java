@@ -19,7 +19,7 @@ public class CustomUserDetails implements UserDetails {
                              Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
         this.username = username;
-        this.password = "";
+        this.password = password;
         this.authorities = authorities;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import study.security.dto.request.MemberLoginRequestDto;
 import study.security.dto.TokenInfo;
 import study.security.dto.request.MemberSignInRequestDto;
+import study.security.entity.Member;
 import study.security.service.MemberService;
 
 @Slf4j
@@ -24,8 +25,8 @@ public class MemberController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<String> siginIn(@RequestBody MemberSignInRequestDto dto) {
-		String saved = memberService.saveUser(dto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+		Member saved = memberService.saveUser(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(saved.toString());
 	}
 
 	@PostMapping("/login")

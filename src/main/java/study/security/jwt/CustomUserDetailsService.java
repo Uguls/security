@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		return new CustomUserDetails(
 			member.getId(),           // 사용자 PK (userId)
 			member.getName(),         // 사용자 이름 (username)
-			"",     // 암호화된 비밀번호
+			member.getPassword(),     // 암호화된 비밀번호
 			authorities             // 권한 목록
 		);
 
